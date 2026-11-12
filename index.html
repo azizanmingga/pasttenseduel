@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fable Past Tense Adventure - Kelas 8</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #Fdfbf7;
+            color: #4a4a4a;
+        }
+        
+        .soft-shadow {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+
+        .chip {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        
+        .chip:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-hover {
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .screen {
+            display: none;
+        }
+        
+        .screen.active {
+            display: block;
+        }
+
+        /* Custom Scrollbar for Materi */
+        .custom-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-blue-50 via-pink-50 to-purple-50">
+
+    <!-- Toast Notification -->
+    <div id="toast-message" class="fixed top-10 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-full font-bold shadow-xl transition-all duration-300 opacity-0 translate-y-[-20px] pointer-events-none z-50">
+        Pesan di sini
+    </div>
+
+    <div class="w-full max-w-3xl bg-white rounded-3xl soft-shadow overflow-hidden border-4 border-white">
+        
+        <!-- HOME SCREEN -->
+        <div id="home-screen" class="screen active p-8 text-center fade-in">
+            <div class="flex justify-center mb-6">
+                <div class="bg-indigo-100 p-4 rounded-full">
+                    <svg class="w-16 h-16 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                </div>
+            </div>
+            <h1 class="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500 mb-2">Fable Past Tense</h1>
+            <p class="text-gray-500 mb-8 font-medium">Petualangan Belajar Bahasa Inggris Kelas 8 SMP</p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="showScreen('materi-screen')" class="btn-hover bg-pink-400 hover:bg-pink-500 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg shadow-pink-200">
+                    📖 Baca Materi
+                </button>
+                <button onclick="startGame()" class="btn-hover bg-teal-400 hover:bg-teal-500 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg shadow-teal-200">
+                    🎮 Mulai 1 Pemain
+                </button>
+                <button onclick="startDuel()" class="btn-hover bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg shadow-orange-200 flex items-center gap-2 w-full sm:w-auto justify-center">
+                    <span>⚔️</span> Duel Tarik Tambang
+                </button>
+            </div>
+        </div>
+
+        <!-- MATERI SCREEN -->
+        <div id="materi-screen" class="screen p-8 fade-in">
+            <div class="flex items-center justify-between mb-6 border-b pb-4">
+                <h2 class="text-2xl font-bold text-indigo-600">📚 Materi Simple Past Tense</h2>
+                <button onclick="showScreen('home-screen')" class="text-gray-400 hover:text-pink-500 font-bold text-xl">&times; Tutup</button>
+            </div>
+            <div class="h-96 overflow-y-auto custom-scroll pr-4 text-gray-600 space-y-6">
+                
+                <p><strong>Simple Past Tense</strong> digunakan untuk menceritakan kejadian yang sudah terjadi di masa lalu. Dalam teks naratif <em>(Narrative Text)</em> seperti fabel, kita selalu menggunakan tenses ini.</p>
+                
+                <div class="bg-blue-50 p-5 rounded-2xl border border-blue-100">
+                    <h3 class="font-bold text-blue-700 text-lg mb-2">1. Kalimat Verbal (Menggunakan Kata Kerja / Verb)</h3>
+                    <p class="mb-2">Gunakan <strong>Verb 2 (Kata Kerja Bentuk Ke-2)</strong> untuk kalimat positif.</p>
+                    <ul class="list-disc ml-5 space-y-1 mb-3">
+                        <li><strong>(+) S + Verb 2 + O</strong></li>
+                        <li><strong>(-) S + did not (didn't) + Verb 1 + O</strong></li>
+                        <li><strong>(?) Did + S + Verb 1 + O ?</strong></li>
+                    </ul>
+                    <p class="font-semibold text-blue-800">Contoh dari Fabel:</p>
+                    <ul class="list-disc ml-5">
+                        <li>(+) The mouse deer <strong>tricked</strong> the crocodile. <em>(Kancil menipu buaya)</em></li>
+                        <li>(-) The hare <strong>did not win</strong> the race. <em>(Kelinci tidak memenangkan balapan)</em></li>
+                        <li>(?) <strong>Did</strong> the mouse <strong>help</strong> the lion? <em>(Apakah tikus membantu singa?)</em></li>
+                    </ul>
+                </div>
+
+                <div class="bg-purple-50 p-5 rounded-2xl border border-purple-100">
+                    <h3 class="font-bold text-purple-700 text-lg mb-2">2. Kalimat Nominal (Menggunakan To Be: Was / Were)</h3>
+                    <p class="mb-2">Digunakan ketika tidak ada kata kerja utama (menggunakan kata sifat/adjective, kata benda/noun, atau keterangan/adverb).</p>
+                    <ul class="list-disc ml-5 space-y-1 mb-3">
+                        <li><strong>Was</strong> untuk subjek tunggal: <em>I, He, She, It, The lion, The mouse.</em></li>
+                        <li><strong>Were</strong> untuk subjek jamak: <em>You, We, They, The ants, The birds.</em></li>
+                    </ul>
+                    <p class="font-semibold text-purple-800">Rumus:</p>
+                    <ul class="list-disc ml-5 space-y-1 mb-3">
+                        <li><strong>(+) S + was/were + Noun/Adjective/Adverb</strong></li>
+                        <li><strong>(-) S + was/were + not + Noun/Adj/Adv</strong></li>
+                        <li><strong>(?) Was/were + S + Noun/Adj/Adv ?</strong></li>
+                    </ul>
+                    <p class="font-semibold text-purple-800">Contoh dari Fabel:</p>
+                    <ul class="list-disc ml-5">
+                        <li>(+) The crocodile <strong>was</strong> very hungry. <em>(Buaya itu sangat lapar)</em></li>
+                        <li>(+) The ants <strong>were</strong> diligent. <em>(Semut-semut itu rajin)</em></li>
+                        <li>(-) The lion <strong>was not</strong> afraid. <em>(Singa itu tidak takut)</em></li>
+                    </ul>
+                </div>
+                
+                <div class="bg-amber-50 p-5 rounded-2xl border border-amber-100">
+                    <h3 class="font-bold text-amber-700 text-xl mb-3 border-b border-amber-200 pb-2">Regular vs Irregular Verbs</h3>
+                    <p class="mb-4"><strong>Regular Verb</strong> berakhiran -ed (play -> played). <strong>Irregular Verb</strong> bentuknya berubah atau tetap (run -> ran, cut -> cut).</p>
+                    
+                    <div class="flex flex-col lg:flex-row gap-6 mt-4">
+                        
+                        <!-- 100 Regular Verbs Table -->
+                        <div class="flex-1 bg-white rounded-xl border border-emerald-200 overflow-hidden soft-shadow">
+                            <h4 class="bg-emerald-100 text-emerald-800 font-bold p-3 text-center border-b border-emerald-200">Daftar 100 Regular Verbs</h4>
+                            <div class="max-h-80 overflow-y-auto custom-scroll">
+                                <table class="w-full text-sm text-left text-gray-600">
+                                    <thead class="text-xs text-emerald-700 uppercase bg-emerald-50 sticky top-0">
+                                        <tr>
+                                            <th class="px-4 py-2 border-b">Verb 1</th>
+                                            <th class="px-4 py-2 border-b">Verb 2</th>
+                                            <th class="px-4 py-2 border-b">Arti</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-100">
+                                        <tr><td class="px-4 py-2">Accept</td><td class="px-4 py-2">Accepted</td><td class="px-4 py-2">Menerima</td></tr>
+                                        <tr><td class="px-4 py-2">Add</td><td class="px-4 py-2">Added</td><td class="px-4 py-2">Menambahkan</td></tr>
+                                        <tr><td class="px-4 py-2">Admire</td><td class="px-4 py-2">Admired</td><td class="px-4 py-2">Mengagumi</td></tr>
+                                        <tr><td class="px-4 py-2">Admit</td><td class="px-4 py-2">Admitted</td><td class="px-4 py-2">Mengakui</td></tr>
+                                        <tr><td class="px-4 py-2">Advise</td><td class="px-4 py-2">Advised</td><td class="px-4 py-2">Menasihati</td></tr>
+                                        <tr><td class="px-4 py-2">Afford</td><td class="px-4 py-2">Afforded</td><td class="px-4 py-2">Mampu</td></tr>
+                                        <tr><td class="px-4 py-2">Agree</td><td class="px-4 py-2">Agreed</td><td class="px-4 py-2">Setuju</td></tr>
+                                        <tr><td class="px-4 py-2">Alert</td><td class="px-4 py-2">Alerted</td><td class="px-4 py-2">Memperingatkan</td></tr>
+                                        <tr><td class="px-4 py-2">Allow</td><td class="px-4 py-2">Allowed</td><td class="px-4 py-2">Mengizinkan</td></tr>
+                                        <tr><td class="px-4 py-2">Amuse</td><td class="px-4 py-2">Amused</td><td class="px-4 py-2">Menghibur</td></tr>
+                                        <tr><td class="px-4 py-2">Answer</td><td class="px-4 py-2">Answered</td><td class="px-4 py-2">Menjawab</td></tr>
+                                        <tr><td class="px-4 py-2">Apologize</td><td class="px-4 py-2">Apologized</td><td class="px-4 py-2">Meminta maaf</td></tr>
+                                        <tr><td class="px-4 py-2">Appear</td><td class="px-4 py-2">Appeared</td><td class="px-4 py-2">Muncul</td></tr>
+                                        <tr><td class="px-4 py-2">Applaud</td><td class="px-4 py-2">Applauded</td><td class="px-4 py-2">Bertepuk tangan</td></tr>
+                                        <tr><td class="px-4 py-2">Argue</td><td class="px-4 py-2">Argued</td><td class="px-4 py-2">Berdah/Berargumen</td></tr>
+                                        <tr><td class="px-4 py-2">Arrange</td><td class="px-4 py-2">Arranged</td><td class="px-4 py-2">Mengatur</td></tr>
+                                        <tr><td class="px-4 py-2">Arrest</td><td class="px-4 py-2">Arrested</td><td class="px-4 py-2">Menangkap</td></tr>
+                                        <tr><td class="px-4 py-2">Arrive</td><td class="px-4 py-2">Arrived</td><td class="px-4 py-2">Tiba</td></tr>
+                                        <tr><td class="px-4 py-2">Ask</td><td class="px-4 py-2">Asked</td><td class="px-4 py-2">Bertanya/Meminta</td></tr>
+                                        <tr><td class="px-4 py-2">Attach</td><td class="px-4 py-2">Attached</td><td class="px-4 py-2">Melampirkan</td></tr>
+                                        <tr><td class="px-4 py-2">Attack</td><td class="px-4 py-2">Attacked</td><td class="px-4 py-2">Menyerang</td></tr>
+                                        <tr><td class="px-4 py-2">Attempt</td><td class="px-4 py-2">Attempted</td><td class="px-4 py-2">Mencoba</td></tr>
+                                        <tr><td class="px-4 py-2">Attend</td><td class="px-4 py-2">Attended</td><td class="px-4 py-2">Menghadiri</td></tr>
+                                        <tr><td class="px-4 py-2">Attract</td><td class="px-4 py-2">Attracted</td><td class="px-4 py-2">Menarik (Perhatian)</td></tr>
+                                        <tr><td class="px-4 py-2">Avoid</td><td class="px-4 py-2">Avoided</td><td class="px-4 py-2">Menghindari</td></tr>
+                                        <tr><td class="px-4 py-2">Bake</td><td class="px-4 py-2">Baked</td><td class="px-4 py-2">Memanggang</td></tr>
+                                        <tr><td class="px-4 py-2">Balance</td><td class="px-4 py-2">Balanced</td><td class="px-4 py-2">Menyeimbangkan</td></tr>
+                                        <tr><td class="px-4 py-2">Ban</td><td class="px-4 py-2">Banned</td><td class="px-4 py-2">Melarang</td></tr>
+                                        <tr><td class="px-4 py-2">Bathe</td><td class="px-4 py-2">Bathed</td><td class="px-4 py-2">Mandi</td></tr>
+                                        <tr><td class="px-4 py-2">Beg</td><td class="px-4 py-2">Begged</td><td class="px-4 py-2">Memohon</td></tr>
+                                        <tr><td class="px-4 py-2">Behave</td><td class="px-4 py-2">Behaved</td><td class="px-4 py-2">Bertingkah laku</td></tr>
+                                        <tr><td class="px-4 py-2">Belong</td><td class="px-4 py-2">Belonged</td><td class="px-4 py-2">Termasuk/Milik</td></tr>
+                                        <tr><td class="px-4 py-2">Bless</td><td class="px-4 py-2">Blessed</td><td class="px-4 py-2">Memberkati</td></tr>
+                                        <tr><td class="px-4 py-2">Blind</td><td class="px-4 py-2">Blinded</td><td class="px-4 py-2">Mebutakan</td></tr>
+                                        <tr><td class="px-4 py-2">Blink</td><td class="px-4 py-2">Blinked</td><td class="px-4 py-2">Berkedip</td></tr>
+                                        <tr><td class="px-4 py-2">Boil</td><td class="px-4 py-2">Boiled</td><td class="px-4 py-2">Mendidih/Merebus</td></tr>
+                                        <tr><td class="px-4 py-2">Borrow</td><td class="px-4 py-2">Borrowed</td><td class="px-4 py-2">Meminjam</td></tr>
+                                        <tr><td class="px-4 py-2">Bounce</td><td class="px-4 py-2">Bounced</td><td class="px-4 py-2">Memantul</td></tr>
+                                        <tr><td class="px-4 py-2">Bow</td><td class="px-4 py-2">Bowed</td><td class="px-4 py-2">Membungkuk</td></tr>
+                                        <tr><td class="px-4 py-2">Brush</td><td class="px-4 py-2">Brushed</td><td class="px-4 py-2">Menyikat</td></tr>
+                                        <tr><td class="px-4 py-2">Burn</td><td class="px-4 py-2">Burned</td><td class="px-4 py-2">Membakar</td></tr>
+                                        <tr><td class="px-4 py-2">Call</td><td class="px-4 py-2">Called</td><td class="px-4 py-2">Memanggil</td></tr>
+                                        <tr><td class="px-4 py-2">Camp</td><td class="px-4 py-2">Camped</td><td class="px-4 py-2">Berkemah</td></tr>
+                                        <tr><td class="px-4 py-2">Care</td><td class="px-4 py-2">Cared</td><td class="px-4 py-2">Peduli</td></tr>
+                                        <tr><td class="px-4 py-2">Carry</td><td class="px-4 py-2">Carried</td><td class="px-4 py-2">Membawa</td></tr>
+                                        <tr><td class="px-4 py-2">Cause</td><td class="px-4 py-2">Caused</td><td class="px-4 py-2">Menyebabkan</td></tr>
+                                        <tr><td class="px-4 py-2">Change</td><td class="px-4 py-2">Changed</td><td class="px-4 py-2">Mengubah</td></tr>
+                                        <tr><td class="px-4 py-2">Chase</td><td class="px-4 py-2">Chased</td><td class="px-4 py-2">Mengejar</td></tr>
+                                        <tr><td class="px-4 py-2">Cheat</td><td class="px-4 py-2">Cheated</td><td class="px-4 py-2">Mencontek/Curang</td></tr>
+                                        <tr><td class="px-4 py-2">Cheer</td><td class="px-4 py-2">Cheered</td><td class="px-4 py-2">Bersorak</td></tr>
+                                        <tr><td class="px-4 py-2">Chew</td><td class="px-4 py-2">Chewed</td><td class="px-4 py-2">Mengunyah</td></tr>
+                                        <tr><td class="px-4 py-2">Claim</td><td class="px-4 py-2">Claimed</td><td class="px-4 py-2">Mengklaim</td></tr>
+                                        <tr><td class="px-4 py-2">Clean</td><td class="px-4 py-2">Cleaned</td><td class="px-4 py-2">Membersihkan</td></tr>
+                                        <tr><td class="px-4 py-2">Clear</td><td class="px-4 py-2">Cleared</td><td class="px-4 py-2">Menjernihkan</td></tr>
+                                        <tr><td class="px-4 py-2">Close</td><td class="px-4 py-2">Closed</td><td class="px-4 py-2">Menutup</td></tr>
+                                        <tr><td class="px-4 py-2">Collect</td><td class="px-4 py-2">Collected</td><td class="px-4 py-2">Mengumpulkan</td></tr>
+                                        <tr><td class="px-4 py-2">Color</td><td class="px-4 py-2">Colored</td><td class="px-4 py-2">Mewarnai</td></tr>
+                                        <tr><td class="px-4 py-2">Comb</td><td class="px-4 py-2">Combed</td><td class="px-4 py-2">Menyisir</td></tr>
+                                        <tr><td class="px-4 py-2">Compare</td><td class="px-4 py-2">Compared</td><td class="px-4 py-2">Membandingkan</td></tr>
+                                        <tr><td class="px-4 py-2">Complain</td><td class="px-4 py-2">Complained</td><td class="px-4 py-2">Mengeluh</td></tr>
+                                        <tr><td class="px-4 py-2">Complete</td><td class="px-4 py-2">Completed</td><td class="px-4 py-2">Menyelesaikan</td></tr>
+                                        <tr><td class="px-4 py-2">Connect</td><td class="px-4 py-2">Connected</td><td class="px-4 py-2">Menghubungkan</td></tr>
+                                        <tr><td class="px-4 py-2">Consider</td><td class="px-4 py-2">Considered</td><td class="px-4 py-2">Mempertimbangkan</td></tr>
+                                        <tr><td class="px-4 py-2">Contain</td><td class="px-4 py-2">Contained</td><td class="px-4 py-2">Berisi</td></tr>
+                                        <tr><td class="px-4 py-2">Continue</td><td class="px-4 py-2">Continued</td><td class="px-4 py-2">Melanjutkan</td></tr>
+                                        <tr><td class="px-4 py-2">Cook</td><td class="px-4 py-2">Cooked</td><td class="px-4 py-2">Memasak</td></tr>
+                                        <tr><td class="px-4 py-2">Copy</td><td class="px-4 py-2">Copied</td><td class="px-4 py-2">Menyalin</td></tr>
+                                        <tr><td class="px-4 py-2">Correct</td><td class="px-4 py-2">Corrected</td><td class="px-4 py-2">Membetulkan</td></tr>
+                                        <tr><td class="px-4 py-2">Cough</td><td class="px-4 py-2">Coughed</td><td class="px-4 py-2">Batuk</td></tr>
+                                        <tr><td class="px-4 py-2">Count</td><td class="px-4 py-2">Counted</td><td class="px-4 py-2">Menghitung</td></tr>
+                                        <tr><td class="px-4 py-2">Cover</td><td class="px-4 py-2">Covered</td><td class="px-4 py-2">Menutupi</td></tr>
+                                        <tr><td class="px-4 py-2">Crash</td><td class="px-4 py-2">Crashed</td><td class="px-4 py-2">Menabrak</td></tr>
+                                        <tr><td class="px-4 py-2">Crawl</td><td class="px-4 py-2">Crawled</td><td class="px-4 py-2">Merangkak</td></tr>
+                                        <tr><td class="px-4 py-2">Cross</td><td class="px-4 py-2">Crossed</td><td class="px-4 py-2">Menyeberang</td></tr>
+                                        <tr><td class="px-4 py-2">Cry</td><td class="px-4 py-2">Cried</td><td class="px-4 py-2">Menangis</td></tr>
+                                        <tr><td class="px-4 py-2">Damage</td><td class="px-4 py-2">Damaged</td><td class="px-4 py-2">Merusak</td></tr>
+                                        <tr><td class="px-4 py-2">Dance</td><td class="px-4 py-2">Danced</td><td class="px-4 py-2">Menari</td></tr>
+                                        <tr><td class="px-4 py-2">Decide</td><td class="px-4 py-2">Decided</td><td class="px-4 py-2">Memutuskan</td></tr>
+                                        <tr><td class="px-4 py-2">Decorate</td><td class="px-4 py-2">Decorated</td><td class="px-4 py-2">Mendekorasi</td></tr>
+                                        <tr><td class="px-4 py-2">Delay</td><td class="px-4 py-2">Delayed</td><td class="px-4 py-2">Menunda</td></tr>
+                                        <tr><td class="px-4 py-2">Delete</td><td class="px-4 py-2">Deleted</td><td class="px-4 py-2">Menghapus</td></tr>
+                                        <tr><td class="px-4 py-2">Deliver</td><td class="px-4 py-2">Delivered</td><td class="px-4 py-2">Mengirim</td></tr>
+                                        <tr><td class="px-4 py-2">Depend</td><td class="px-4 py-2">Depended</td><td class="px-4 py-2">Tergantung</td></tr>
+                                        <tr><td class="px-4 py-2">Describe</td><td class="px-4 py-2">Described</td><td class="px-4 py-2">Menggambarkan</td></tr>
+                                        <tr><td class="px-4 py-2">Destroy</td><td class="px-4 py-2">Destroyed</td><td class="px-4 py-2">Menghancurkan</td></tr>
+                                        <tr><td class="px-4 py-2">Develop</td><td class="px-4 py-2">Developed</td><td class="px-4 py-2">Mengembangkan</td></tr>
+                                        <tr><td class="px-4 py-2">Discover</td><td class="px-4 py-2">Discovered</td><td class="px-4 py-2">Menemukan</td></tr>
+                                        <tr><td class="px-4 py-2">Divide</td><td class="px-4 py-2">Divided</td><td class="px-4 py-2">Membagi</td></tr>
+                                        <tr><td class="px-4 py-2">Drag</td><td class="px-4 py-2">Dragged</td><td class="px-4 py-2">Menyeret</td></tr>
+                                        <tr><td class="px-4 py-2">Drop</td><td class="px-4 py-2">Dropped</td><td class="px-4 py-2">Menjatuhkan</td></tr>
+                                        <tr><td class="px-4 py-2">Earn</td><td class="px-4 py-2">Earned</td><td class="px-4 py-2">Mendapatkan (Uang)</td></tr>
+                                        <tr><td class="px-4 py-2">Educate</td><td class="px-4 py-2">Educated</td><td class="px-4 py-2">Mendidik</td></tr>
+                                        <tr><td class="px-4 py-2">Employ</td><td class="px-4 py-2">Employed</td><td class="px-4 py-2">Mempekerjakan</td></tr>
+                                        <tr><td class="px-4 py-2">Encourage</td><td class="px-4 py-2">Encouraged</td><td class="px-4 py-2">Mendorong/Menyemangati</td></tr>
+                                        <tr><td class="px-4 py-2">Enjoy</td><td class="px-4 py-2">Enjoyed</td><td class="px-4 py-2">Menikmati</td></tr>
+                                        <tr><td class="px-4 py-2">Enter</td><td class="px-4 py-2">Entered</td><td class="px-4 py-2">Masuk</td></tr>
+                                        <tr><td class="px-4 py-2">Examine</td><td class="px-4 py-2">Examined</td><td class="px-4 py-2">Memeriksa</td></tr>
+                                        <tr><td class="px-4 py-2">Expect</td><td class="px-4 py-2">Expected</td><td class="px-4 py-2">Mengharapkan</td></tr>
+                                        <tr><td class="px-4 py-2">Explain</td><td class="px-4 py-2">Explained</td><td class="px-4 py-2">Menjelaskan</td></tr>
+                                        <tr><td class="px-4 py-2">Fail</td><td class="px-4 py-2">Failed</td><td class="px-4 py-2">Gagal</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- 100 Irregular Verbs Table -->
+                        <div class="flex-1 bg-white rounded-xl border border-orange-200 overflow-hidden soft-shadow">
+                            <h4 class="bg-orange-100 text-orange-800 font-bold p-3 text-center border-b border-orange-200">Daftar 100 Irregular Verbs</h4>
+                            <div class="max-h-80 overflow-y-auto custom-scroll">
+                                <table class="w-full text-sm text-left text-gray-600">
+                                    <thead class="text-xs text-orange-700 uppercase bg-orange-50 sticky top-0">
+                                        <tr>
+                                            <th class="px-4 py-2 border-b">Verb 1</th>
+                                            <th class="px-4 py-2 border-b">Verb 2</th>
+                                            <th class="px-4 py-2 border-b">Arti</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-100">
+                                        <tr><td class="px-4 py-2">Arise</td><td class="px-4 py-2">Arose</td><td class="px-4 py-2">Muncul / Timbul</td></tr>
+                                        <tr><td class="px-4 py-2">Awake</td><td class="px-4 py-2">Awoke</td><td class="px-4 py-2">Bangun</td></tr>
+                                        <tr><td class="px-4 py-2">Be (am, is, are)</td><td class="px-4 py-2">Was / Were</td><td class="px-4 py-2">Adalah / Berada</td></tr>
+                                        <tr><td class="px-4 py-2">Bear</td><td class="px-4 py-2">Bore</td><td class="px-4 py-2">Menahan / Membawa</td></tr>
+                                        <tr><td class="px-4 py-2">Beat</td><td class="px-4 py-2">Beat</td><td class="px-4 py-2">Memukul / Mengalahkan</td></tr>
+                                        <tr><td class="px-4 py-2">Become</td><td class="px-4 py-2">Became</td><td class="px-4 py-2">Menjadi</td></tr>
+                                        <tr><td class="px-4 py-2">Begin</td><td class="px-4 py-2">Began</td><td class="px-4 py-2">Memulai</td></tr>
+                                        <tr><td class="px-4 py-2">Bend</td><td class="px-4 py-2">Bent</td><td class="px-4 py-2">Membungkuk / Melengkung</td></tr>
+                                        <tr><td class="px-4 py-2">Bet</td><td class="px-4 py-2">Bet</td><td class="px-4 py-2">Bertaruh</td></tr>
+                                        <tr><td class="px-4 py-2">Bind</td><td class="px-4 py-2">Bound</td><td class="px-4 py-2">Mengikat</td></tr>
+                                        <tr><td class="px-4 py-2">Bite</td><td class="px-4 py-2">Bit</td><td class="px-4 py-2">Menggigit</td></tr>
+                                        <tr><td class="px-4 py-2">Bleed</td><td class="px-4 py-2">Bled</td><td class="px-4 py-2">Berdarah</td></tr>
+                                        <tr><td class="px-4 py-2">Blow</td><td class="px-4 py-2">Blew</td><td class="px-4 py-2">Meniup</td></tr>
+                                        <tr><td class="px-4 py-2">Break</td><td class="px-4 py-2">Broke</td><td class="px-4 py-2">Mematahkan / Merusak</td></tr>
+                                        <tr><td class="px-4 py-2">Breed</td><td class="px-4 py-2">Bred</td><td class="px-4 py-2">Berkembang biak</td></tr>
+                                        <tr><td class="px-4 py-2">Bring</td><td class="px-4 py-2">Brought</td><td class="px-4 py-2">Membawa</td></tr>
+                                        <tr><td class="px-4 py-2">Broadcast</td><td class="px-4 py-2">Broadcast</td><td class="px-4 py-2">Menyiarkan</td></tr>
+                                        <tr><td class="px-4 py-2">Build</td><td class="px-4 py-2">Built</td><td class="px-4 py-2">Membangun</td></tr>
+                                        <tr><td class="px-4 py-2">Burn</td><td class="px-4 py-2">Burnt</td><td class="px-4 py-2">Membakar</td></tr>
+                                        <tr><td class="px-4 py-2">Burst</td><td class="px-4 py-2">Burst</td><td class="px-4 py-2">Meledak</td></tr>
+                                        <tr><td class="px-4 py-2">Buy</td><td class="px-4 py-2">Bought</td><td class="px-4 py-2">Membeli</td></tr>
+                                        <tr><td class="px-4 py-2">Cast</td><td class="px-4 py-2">Cast</td><td class="px-4 py-2">Melemparkan</td></tr>
+                                        <tr><td class="px-4 py-2">Catch</td><td class="px-4 py-2">Caught</td><td class="px-4 py-2">Menangkap</td></tr>
+                                        <tr><td class="px-4 py-2">Choose</td><td class="px-4 py-2">Chose</td><td class="px-4 py-2">Memilih</td></tr>
+                                        <tr><td class="px-4 py-2">Cling</td><td class="px-4 py-2">Clung</td><td class="px-4 py-2">Berpegang teguh</td></tr>
+                                        <tr><td class="px-4 py-2">Come</td><td class="px-4 py-2">Came</td><td class="px-4 py-2">Datang</td></tr>
+                                        <tr><td class="px-4 py-2">Cost</td><td class="px-4 py-2">Cost</td><td class="px-4 py-2">Berharga / Memakan biaya</td></tr>
+                                        <tr><td class="px-4 py-2">Creep</td><td class="px-4 py-2">Crept</td><td class="px-4 py-2">Merayap</td></tr>
+                                        <tr><td class="px-4 py-2">Cut</td><td class="px-4 py-2">Cut</td><td class="px-4 py-2">Memotong</td></tr>
+                                        <tr><td class="px-4 py-2">Deal</td><td class="px-4 py-2">Dealt</td><td class="px-4 py-2">Berurusan</td></tr>
+                                        <tr><td class="px-4 py-2">Dig</td><td class="px-4 py-2">Dug</td><td class="px-4 py-2">Menggali</td></tr>
+                                        <tr><td class="px-4 py-2">Do / Does</td><td class="px-4 py-2">Did</td><td class="px-4 py-2">Melakukan</td></tr>
+                                        <tr><td class="px-4 py-2">Draw</td><td class="px-4 py-2">Drew</td><td class="px-4 py-2">Menggambar</td></tr>
+                                        <tr><td class="px-4 py-2">Dream</td><td class="px-4 py-2">Dreamt</td><td class="px-4 py-2">Bermimpi</td></tr>
+                                        <tr><td class="px-4 py-2">Drink</td><td class="px-4 py-2">Drank</td><td class="px-4 py-2">Minum</td></tr>
+                                        <tr><td class="px-4 py-2">Drive</td><td class="px-4 py-2">Drove</td><td class="px-4 py-2">Mengemudi</td></tr>
+                                        <tr><td class="px-4 py-2">Eat</td><td class="px-4 py-2">Ate</td><td class="px-4 py-2">Makan</td></tr>
+                                        <tr><td class="px-4 py-2">Fall</td><td class="px-4 py-2">Fell</td><td class="px-4 py-2">Jatuh</td></tr>
+                                        <tr><td class="px-4 py-2">Feed</td><td class="px-4 py-2">Fed</td><td class="px-4 py-2">Memberi makan</td></tr>
+                                        <tr><td class="px-4 py-2">Feel</td><td class="px-4 py-2">Felt</td><td class="px-4 py-2">Merasa</td></tr>
+                                        <tr><td class="px-4 py-2">Fight</td><td class="px-4 py-2">Fought</td><td class="px-4 py-2">Berkelahi</td></tr>
+                                        <tr><td class="px-4 py-2">Find</td><td class="px-4 py-2">Found</td><td class="px-4 py-2">Menemukan</td></tr>
+                                        <tr><td class="px-4 py-2">Fly</td><td class="px-4 py-2">Flew</td><td class="px-4 py-2">Terbang</td></tr>
+                                        <tr><td class="px-4 py-2">Forbid</td><td class="px-4 py-2">Forbade</td><td class="px-4 py-2">Melarang</td></tr>
+                                        <tr><td class="px-4 py-2">Forget</td><td class="px-4 py-2">Forgot</td><td class="px-4 py-2">Lupa</td></tr>
+                                        <tr><td class="px-4 py-2">Forgive</td><td class="px-4 py-2">Forgave</td><td class="px-4 py-2">Memaafkan</td></tr>
+                                        <tr><td class="px-4 py-2">Freeze</td><td class="px-4 py-2">Froze</td><td class="px-4 py-2">Membeku</td></tr>
+                                        <tr><td class="px-4 py-2">Get</td><td class="px-4 py-2">Got</td><td class="px-4 py-2">Mendapatkan</td></tr>
+                                        <tr><td class="px-4 py-2">Give</td><td class="px-4 py-2">Gave</td><td class="px-4 py-2">Memberi</td></tr>
+                                        <tr><td class="px-4 py-2">Go</td><td class="px-4 py-2">Went</td><td class="px-4 py-2">Pergi</td></tr>
+                                        <tr><td class="px-4 py-2">Grow</td><td class="px-4 py-2">Grew</td><td class="px-4 py-2">Tumbuh</td></tr>
+                                        <tr><td class="px-4 py-2">Hang</td><td class="px-4 py-2">Hung</td><td class="px-4 py-2">Menggantung</td></tr>
+                                        <tr><td class="px-4 py-2">Have / Has</td><td class="px-4 py-2">Had</td><td class="px-4 py-2">Mempunyai</td></tr>
+                                        <tr><td class="px-4 py-2">Hear</td><td class="px-4 py-2">Heard</td><td class="px-4 py-2">Mendengar</td></tr>
+                                        <tr><td class="px-4 py-2">Hide</td><td class="px-4 py-2">Hid</td><td class="px-4 py-2">Menyembunyikan</td></tr>
+                                        <tr><td class="px-4 py-2">Hit</td><td class="px-4 py-2">Hit</td><td class="px-4 py-2">Memukul</td></tr>
+                                        <tr><td class="px-4 py-2">Hold</td><td class="px-4 py-2">Held</td><td class="px-4 py-2">Memegang</td></tr>
+                                        <tr><td class="px-4 py-2">Hurt</td><td class="px-4 py-2">Hurt</td><td class="px-4 py-2">Melukai</td></tr>
+                                        <tr><td class="px-4 py-2">Keep</td><td class="px-4 py-2">Kept</td><td class="px-4 py-2">Menjaga / Menyimpan</td></tr>
+                                        <tr><td class="px-4 py-2">Kneel</td><td class="px-4 py-2">Knelt</td><td class="px-4 py-2">Berlutut</td></tr>
+                                        <tr><td class="px-4 py-2">Know</td><td class="px-4 py-2">Knew</td><td class="px-4 py-2">Mengetahui</td></tr>
+                                        <tr><td class="px-4 py-2">Lay</td><td class="px-4 py-2">Laid</td><td class="px-4 py-2">Meletakkan</td></tr>
+                                        <tr><td class="px-4 py-2">Lead</td><td class="px-4 py-2">Led</td><td class="px-4 py-2">Memimpin</td></tr>
+                                        <tr><td class="px-4 py-2">Learn</td><td class="px-4 py-2">Learnt</td><td class="px-4 py-2">Belajar</td></tr>
+                                        <tr><td class="px-4 py-2">Leave</td><td class="px-4 py-2">Left</td><td class="px-4 py-2">Meninggalkan</td></tr>
+                                        <tr><td class="px-4 py-2">Lend</td><td class="px-4 py-2">Lent</td><td class="px-4 py-2">Meminjamkan</td></tr>
+                                        <tr><td class="px-4 py-2">Let</td><td class="px-4 py-2">Let</td><td class="px-4 py-2">Membiarkan</td></tr>
+                                        <tr><td class="px-4 py-2">Lie</td><td class="px-4 py-2">Lay</td><td class="px-4 py-2">Berbaring</td></tr>
+                                        <tr><td class="px-4 py-2">Light</td><td class="px-4 py-2">Lit</td><td class="px-4 py-2">Menyalakan</td></tr>
+                                        <tr><td class="px-4 py-2">Lose</td><td class="px-4 py-2">Lost</td><td class="px-4 py-2">Kehilangan</td></tr>
+                                        <tr><td class="px-4 py-2">Make</td><td class="px-4 py-2">Made</td><td class="px-4 py-2">Membuat</td></tr>
+                                        <tr><td class="px-4 py-2">Mean</td><td class="px-4 py-2">Meant</td><td class="px-4 py-2">Berarti</td></tr>
+                                        <tr><td class="px-4 py-2">Meet</td><td class="px-4 py-2">Met</td><td class="px-4 py-2">Bertemu</td></tr>
+                                        <tr><td class="px-4 py-2">Pay</td><td class="px-4 py-2">Paid</td><td class="px-4 py-2">Membayar</td></tr>
+                                        <tr><td class="px-4 py-2">Put</td><td class="px-4 py-2">Put</td><td class="px-4 py-2">Meletakkan</td></tr>
+                                        <tr><td class="px-4 py-2">Read</td><td class="px-4 py-2">Read</td><td class="px-4 py-2">Membaca</td></tr>
+                                        <tr><td class="px-4 py-2">Ride</td><td class="px-4 py-2">Rode</td><td class="px-4 py-2">Mengendarai</td></tr>
+                                        <tr><td class="px-4 py-2">Ring</td><td class="px-4 py-2">Rang</td><td class="px-4 py-2">Berdering</td></tr>
+                                        <tr><td class="px-4 py-2">Rise</td><td class="px-4 py-2">Rose</td><td class="px-4 py-2">Terbit / Naik</td></tr>
+                                        <tr><td class="px-4 py-2">Run</td><td class="px-4 py-2">Ran</td><td class="px-4 py-2">Berlari</td></tr>
+                                        <tr><td class="px-4 py-2">Say</td><td class="px-4 py-2">Said</td><td class="px-4 py-2">Mengatakan</td></tr>
+                                        <tr><td class="px-4 py-2">See</td><td class="px-4 py-2">Saw</td><td class="px-4 py-2">Melihat</td></tr>
+                                        <tr><td class="px-4 py-2">Sell</td><td class="px-4 py-2">Sold</td><td class="px-4 py-2">Menjual</td></tr>
+                                        <tr><td class="px-4 py-2">Send</td><td class="px-4 py-2">Sent</td><td class="px-4 py-2">Mengirim</td></tr>
+                                        <tr><td class="px-4 py-2">Set</td><td class="px-4 py-2">Set</td><td class="px-4 py-2">Menyetel</td></tr>
+                                        <tr><td class="px-4 py-2">Sew</td><td class="px-4 py-2">Sewed</td><td class="px-4 py-2">Menjahit</td></tr>
+                                        <tr><td class="px-4 py-2">Shake</td><td class="px-4 py-2">Shook</td><td class="px-4 py-2">Menggoyangkan</td></tr>
+                                        <tr><td class="px-4 py-2">Shine</td><td class="px-4 py-2">Shone</td><td class="px-4 py-2">Bersinar</td></tr>
+                                        <tr><td class="px-4 py-2">Shoot</td><td class="px-4 py-2">Shot</td><td class="px-4 py-2">Menembak</td></tr>
+                                        <tr><td class="px-4 py-2">Show</td><td class="px-4 py-2">Showed</td><td class="px-4 py-2">Menunjukkan</td></tr>
+                                        <tr><td class="px-4 py-2">Shrink</td><td class="px-4 py-2">Shrank</td><td class="px-4 py-2">Menyusut</td></tr>
+                                        <tr><td class="px-4 py-2">Shut</td><td class="px-4 py-2">Shut</td><td class="px-4 py-2">Menutup</td></tr>
+                                        <tr><td class="px-4 py-2">Sing</td><td class="px-4 py-2">Sang</td><td class="px-4 py-2">Menyanyi</td></tr>
+                                        <tr><td class="px-4 py-2">Sink</td><td class="px-4 py-2">Sank</td><td class="px-4 py-2">Tenggelam</td></tr>
+                                        <tr><td class="px-4 py-2">Sit</td><td class="px-4 py-2">Sat</td><td class="px-4 py-2">Duduk</td></tr>
+                                        <tr><td class="px-4 py-2">Sleep</td><td class="px-4 py-2">Slept</td><td class="px-4 py-2">Tidur</td></tr>
+                                        <tr><td class="px-4 py-2">Slide</td><td class="px-4 py-2">Slid</td><td class="px-4 py-2">Meluncur</td></tr>
+                                        <tr><td class="px-4 py-2">Speak</td><td class="px-4 py-2">Spoke</td><td class="px-4 py-2">Berbicara</td></tr>
+                                        <tr><td class="px-4 py-2">Spend</td><td class="px-4 py-2">Spent</td><td class="px-4 py-2">Menghabiskan</td></tr>
+                                        <tr><td class="px-4 py-2">Stand</td><td class="px-4 py-2">Stood</td><td class="px-4 py-2">Berdiri</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="mt-6 text-center flex flex-col sm:flex-row justify-center gap-4 border-t pt-4">
+                <button onclick="startGame()" class="btn-hover bg-teal-400 hover:bg-teal-500 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg shadow-teal-200">
+                    Main 1 Pemain 🎮
+                </button>
+                <button onclick="startDuel()" class="btn-hover bg-orange-400 hover:bg-orange-500 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg shadow-orange-200">
+                    Main 2 Pemain ⚔️
+                </button>
+            </div>
+        </div>
+
+        <!-- GAME SCREEN -->
+        <div id="game-screen" class="screen p-6 sm:p-8 fade-in flex flex-col h-full min-h-[500px]">
+            <div class="flex justify-between items-center mb-4">
+                <span class="text-sm font-bold text-gray-500 bg-gray-100 py-1 px-3 rounded-full" id="question-counter">Soal 1 / 10</span>
+                <span class="text-sm font-bold text-amber-500 bg-amber-50 py-1 px-3 rounded-full border border-amber-200" id="score-display">Skor: 0</span>
+            </div>
+            
+            <div class="w-full bg-gray-100 rounded-full h-2.5 mb-6">
+                <div id="progress-bar" class="bg-gradient-to-r from-pink-400 to-indigo-500 h-2.5 rounded-full transition-all duration-300" style="width: 10%"></div>
+            </div>
+
+            <div id="question-container" class="flex-grow">
+                <!-- Question content will be injected here -->
+            </div>
+
+            <div id="feedback-container" class="hidden mt-4 p-4 rounded-xl text-center font-bold text-lg fade-in"></div>
+
+            <div class="mt-6 flex justify-between items-center border-t pt-4">
+                <button onclick="showScreen('home-screen')" class="text-gray-400 hover:text-indigo-600 font-bold text-sm">⬅️ Keluar ke Menu</button>
+                <div class="flex gap-3">
+                    <button id="btn-check" onclick="checkAnswer()" class="btn-hover bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2.5 px-6 rounded-xl shadow-md">
+                        Periksa Jawaban
+                    </button>
+                    <button id="btn-next" onclick="nextQuestion()" class="hidden btn-hover bg-teal-500 hover:bg-teal-600 text-white font-bold py-2.5 px-6 rounded-xl shadow-md">
+                        Selanjutnya ➡️
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULT SCREEN -->
+        <div id="result-screen" class="screen p-8 text-center fade-in">
+            <h2 class="text-3xl font-extrabold text-indigo-600 mb-4">Permainan Selesai! 🎉</h2>
+            <div class="bg-gray-50 rounded-full w-40 h-40 flex items-center justify-center mx-auto mb-6 border-4 border-white soft-shadow">
+                <span id="final-score" class="text-5xl font-black text-pink-500">100</span>
+            </div>
+            <p id="result-message" class="text-xl text-gray-600 font-medium mb-8">Luar biasa! Kamu sangat menguasai materi Past Tense.</p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="showScreen('home-screen')" class="btn-hover bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-3 px-8 rounded-full text-lg">
+                    Ke Beranda
+                </button>
+                <button onclick="startGame()" class="btn-hover bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg shadow-indigo-200">
+                    🔄 Main Lagi (Acak Soal)
+                </button>
+            </div>
+        </div>
+
+        <!-- DUEL SCREEN (TARIK TAMBANG) -->
+        <div id="duel-screen" class="screen p-4 sm:p-8 fade-in flex flex-col h-full min-h-[500px] relative">
+            <div class="text-center mb-4 flex justify-between items-center">
+                <button onclick="showScreen('home-screen')" class="text-gray-400 hover:text-red-500 font-bold text-lg">&times; Keluar</button>
+                <h2 class="text-2xl font-bold text-indigo-700 mx-auto">⚔️ Tarik Tambang Past Tense</h2>
+                <div class="w-12"></div>
+            </div>
+            <p class="text-gray-500 text-sm text-center mb-6">Pemain 1 (A/D) vs Pemain 2 (Kiri/Kanan). Jawab cepat dan tarik tambangnya ke sisimu!</p>
+            
+            <!-- Area Tambang -->
+            <div class="relative w-full h-24 bg-blue-50 rounded-2xl flex items-center px-4 mb-6 border-2 border-blue-100 overflow-hidden soft-shadow">
+                <div class="absolute top-1/2 left-0 right-0 h-3 bg-amber-700 -translate-y-1/2 z-0 opacity-80" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 20px);"></div>
+                <div id="rope-marker" class="absolute top-1/2 left-1/2 w-14 h-14 bg-red-500 rounded-full border-4 border-white shadow-xl -translate-y-1/2 -translate-x-1/2 z-10 transition-all duration-300 ease-out flex items-center justify-center text-white text-2xl">🎗️</div>
+                
+                <div class="z-10 bg-white px-3 py-1 rounded-xl shadow-sm text-pink-600 font-black border-2 border-pink-200 text-lg">P1</div>
+                <div class="z-10 ml-auto bg-white px-3 py-1 rounded-xl shadow-sm text-teal-600 font-black border-2 border-teal-200 text-lg">P2</div>
+            </div>
+
+            <!-- Area Pertanyaan -->
+            <div class="flex-grow flex flex-col items-center justify-center text-center bg-white p-6 rounded-2xl border-2 border-indigo-100 shadow-sm mb-6">
+                <h3 id="duel-q-text" class="text-xl sm:text-2xl font-black text-gray-800 mb-6">Pertanyaan muncul di sini</h3>
+                <div class="flex gap-4 w-full justify-center">
+                    <div id="duel-opt-0" class="flex-1 max-w-[200px] py-4 px-4 bg-indigo-50 text-indigo-800 font-bold rounded-xl border-2 border-indigo-300 text-center text-lg shadow-sm">Pilihan A</div>
+                    <div id="duel-opt-1" class="flex-1 max-w-[200px] py-4 px-4 bg-purple-50 text-purple-800 font-bold rounded-xl border-2 border-purple-300 text-center text-lg shadow-sm">Pilihan B</div>
+                </div>
+            </div>
+
+            <!-- Kontrol Pemain -->
+            <div class="flex justify-between gap-2 sm:gap-4 mt-auto">
+                <!-- P1 -->
+                <div class="w-1/2 bg-pink-50 p-3 sm:p-4 rounded-2xl border-2 border-pink-200 text-center">
+                    <p class="font-black text-pink-600 mb-2">🧑‍🦱 Pemain 1</p>
+                    <div class="flex gap-2">
+                        <button onclick="handleDuelAnswer(1, 0)" class="flex-1 bg-pink-400 hover:bg-pink-500 text-white font-bold py-3 sm:py-4 rounded-xl shadow-md active:scale-95 transition-transform text-xs sm:text-base">PILIH KIRI<br><span class="text-pink-100 text-xs">(Tombol A)</span></button>
+                        <button onclick="handleDuelAnswer(1, 1)" class="flex-1 bg-pink-400 hover:bg-pink-500 text-white font-bold py-3 sm:py-4 rounded-xl shadow-md active:scale-95 transition-transform text-xs sm:text-base">PILIH KANAN<br><span class="text-pink-100 text-xs">(Tombol D)</span></button>
+                    </div>
+                </div>
+                <!-- P2 -->
+                <div class="w-1/2 bg-teal-50 p-3 sm:p-4 rounded-2xl border-2 border-teal-200 text-center">
+                    <p class="font-black text-teal-600 mb-2">👱‍♂️ Pemain 2</p>
+                    <div class="flex gap-2">
+                        <button onclick="handleDuelAnswer(2, 0)" class="flex-1 bg-teal-400 hover:bg-teal-500 text-white font-bold py-3 sm:py-4 rounded-xl shadow-md active:scale-95 transition-transform text-xs sm:text-base">PILIH KIRI<br><span class="text-teal-100 text-xs">(Panah Kiri)</span></button>
+                        <button onclick="handleDuelAnswer(2, 1)" class="flex-1 bg-teal-400 hover:bg-teal-500 text-white font-bold py-3 sm:py-4 rounded-xl shadow-md active:scale-95 transition-transform text-xs sm:text-base">PILIH KANAN<br><span class="text-teal-100 text-xs">(Panah Kanan)</span></button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Duel Result Overlay -->
+            <div id="duel-result-overlay" class="hidden absolute inset-0 bg-white/90 backdrop-blur-sm z-50 flex flex-col items-center justify-center rounded-3xl p-8 text-center fade-in">
+                <h2 id="duel-winner-text" class="text-4xl font-black text-indigo-600 mb-4">Pemain 1 Menang! 🎉</h2>
+                <div class="flex flex-col sm:flex-row gap-4 mt-6">
+                    <button onclick="showScreen('home-screen')" class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-3 px-8 rounded-full text-lg">Ke Beranda</button>
+                    <button onclick="startDuel()" class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg">🔄 Tanding Ulang</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<script>
+// ==========================================
+// TOAST NOTIFICATION UTILITY
+// ==========================================
+function showToast(msg, isError = true) {
+    const toast = document.getElementById('toast-message');
+    toast.innerText = msg;
+    toast.className = `fixed top-10 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full font-bold shadow-xl transition-all duration-300 z-50 ${isError ? 'bg-red-500 text-white' : 'bg-emerald-500 text-white'}`;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translate(-50%, 0)';
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translate(-50%, -20px)';
+    }, 3000);
+}
+
+// ==========================================
+// BANK SOAL (50 SOAL)
+// ==========================================
+const bankSoal = [
+    // --- PILIHAN GANDA (10 Soal) ---
+    { id: 1, type: 'mcq', question: "The mouse deer ... the crocodile to cross the river.", options: ["trick", "tricks", "tricking", "tricked"], answer: "tricked" },
+    { id: 2, type: 'mcq', question: "The ugly duckling ... very sad because nobody loved him.", options: ["is", "was", "were", "are"], answer: "was" },
+    { id: 3, type: 'mcq', question: "The tortoise ... the race because he was consistent.", options: ["win", "wins", "won", "winning"], answer: "won" },
+    { id: 4, type: 'mcq', question: "The ants ... very busy collecting food for winter.", options: ["was", "were", "is", "are"], answer: "were" },
+    { id: 5, type: 'mcq', question: "The lion ... loudly and caught the little mouse.", options: ["roar", "roars", "roaring", "roared"], answer: "roared" },
+    { id: 6, type: 'mcq', question: "The thirsty crow ... some water in a pitcher.", options: ["find", "finds", "found", "finding"], answer: "found" },
+    { id: 7, type: 'mcq', question: "What did the fox ... to the crow?", options: ["say", "said", "says", "saying"], answer: "say" },
+    { id: 8, type: 'mcq', question: "The monkey and the turtle ... good friends in the past.", options: ["was", "is", "were", "are"], answer: "were" },
+    { id: 9, type: 'mcq', question: "The woodcutter ... his axe into the deep river.", options: ["drop", "drops", "dropped", "dropping"], answer: "dropped" },
+    { id: 10, type: 'mcq', question: "The boy ... not see any wolf, but he shouted for help.", options: ["do", "does", "did", "was"], answer: "did" },
+
+    // --- MELENGKAPI KALIMAT (10 Soal) ---
+    { id: 11, type: 'fill', question: "The grasshopper ___ (sing) all day during the summer.", answer: "sang" },
+    { id: 12, type: 'fill', question: "The golden goose ___ (lay) one golden egg every day.", answer: "laid" },
+    { id: 13, type: 'fill', question: "The little pigs ___ (be) terrified of the big bad wolf.", answer: "were" },
+    { id: 14, type: 'fill', question: "The fox ___ (jump) high to get the grapes but failed.", answer: "jumped" },
+    { id: 15, type: 'fill', question: "The farmer ___ (cut) the goose to get all the gold.", answer: "cut" },
+    { id: 16, type: 'fill', question: "The bear ___ (smell) the man's ear and walked away.", answer: "smelled" },
+    { id: 17, type: 'fill', question: "The monkey ___ (eat) all the bananas on the tree.", answer: "ate" },
+    { id: 18, type: 'fill', question: "Once upon a time, there ___ (be) a beautiful princess.", answer: "was" },
+    { id: 19, type: 'fill', question: "The mouse ___ (bite) the net to free the lion.", answer: "bit" },
+    { id: 20, type: 'fill', question: "The frogs ___ (want) a king to rule their pond.", answer: "wanted" },
+
+    // --- MENYUSUN KATA (10 Soal) ---
+    { id: 21, type: 'word_order', question: "Susun kata menjadi kalimat yang benar:", words: ["The", "hare", "slept", "under", "the", "tree"], answer: "The hare slept under the tree" },
+    { id: 22, type: 'word_order', question: "Susun kata menjadi kalimat yang benar:", words: ["The", "lion", "was", "very", "angry"], answer: "The lion was very angry" },
+    { id: 23, type: 'word_order', question: "Susun kata menjadi kalimat yang benar:", words: ["He", "threw", "stones", "into", "the", "water"], answer: "He threw stones into the water" },
+    { id: 24, type: 'word_order', question: "Susun kata menjadi kalimat yang benar:", words: ["The", "boy", "cried", "for", "help"], answer: "The boy cried for help" },
+    { id: 25, type: 'word_order', question: "Susun kata menjadi kalimat yang benar:", words: ["They", "were", "happy", "in", "the", "end"], answer: "They were happy in the end" },
+    { id: 26, type: 'word_order', question: "Susun kata menjadi kalimat yang benar:", words: ["The", "fox", "saw", "some", "grapes"], answer: "The fox saw some grapes" },
+    { id: 27, type: 'word_order', question: "Susun kata menjadi kalimat yang benar:", words: ["The", "mouse", "helped", "the", "lion"], answer: "The mouse helped the lion" },
+    { id: 28, type: 'word_order', question: "Susun kata menjadi kalimat yang benar:", words: ["The", "duckling", "became", "a", "beautiful", "swan"], answer: "The duckling became a beautiful swan" },
+    { id: 29, type: 'word_order', question: "Susun kata menjadi kalimat yang benar:", words: ["She", "did", "not", "tell", "a", "lie"], answer: "She did not tell a lie" },
+    { id: 30, type: 'word_order', question: "Susun kata menjadi kalimat yang benar:", words: ["The", "farmer", "lost", "his", "golden", "goose"], answer: "The farmer lost his golden goose" },
+
+    // --- MENJODOHKAN (10 Soal) ---
+    { id: 41, type: 'match', question: "Jodohkan Verb 1 dengan Verb 2 (Past Tense) yang tepat!", pairs: [{left: "Run", right: "Ran"}, {left: "Eat", right: "Ate"}, {left: "Catch", right: "Caught"}] },
+    { id: 42, type: 'match', question: "Jodohkan Verb 1 dengan Verb 2 (Past Tense) yang tepat!", pairs: [{left: "Sleep", right: "Slept"}, {left: "Find", right: "Found"}, {left: "Give", right: "Gave"}] },
+    { id: 43, type: 'match', question: "Jodohkan Verb 1 dengan Verb 2 (Past Tense) yang tepat!", pairs: [{left: "Go", right: "Went"}, {left: "See", right: "Saw"}, {left: "Take", right: "Took"}] },
+    { id: 44, type: 'match', question: "Jodohkan Verb 1 dengan Verb 2 (Past Tense) yang tepat!", pairs: [{left: "Win", right: "Won"}, {left: "Fly", right: "Flew"}, {left: "Fall", right: "Fell"}] },
+    { id: 45, type: 'match', question: "Jodohkan Subjek dengan To Be (Was/Were) yang tepat!", pairs: [{left: "The Lion", right: "Was"}, {left: "The Birds", right: "Were"}, {left: "They", right: "Were"}] },
+    { id: 46, type: 'match', question: "Jodohkan Subjek dengan To Be (Was/Were) yang tepat!", pairs: [{left: "The Ants", right: "Were"}, {left: "The Mouse Deer", right: "Was"}, {left: "We", right: "Were"}] },
+    { id: 47, type: 'match', question: "Jodohkan Verb 1 dengan Verb 2 (Past Tense) yang tepat!", pairs: [{left: "Say", right: "Said"}, {left: "Hear", right: "Heard"}, {left: "Make", right: "Made"}] },
+    { id: 48, type: 'match', question: "Jodohkan Verb 1 dengan Verb 2 (Past Tense) yang tepat!", pairs: [{left: "Tell", right: "Told"}, {left: "Know", right: "Knew"}, {left: "Think", right: "Thought"}] },
+    { id: 49, type: 'match', question: "Jodohkan Verb 1 dengan Verb 2 (Past Tense) yang tepat!", pairs: [{left: "Bite", right: "Bit"}, {left: "Hide", right: "Hid"}, {left: "Wake", right: "Woke"}] },
+    { id: 50, type: 'match', question: "Jodohkan Verb 1 dengan Verb 2 (Past Tense) yang tepat!", pairs: [{left: "Come", right: "Came"}, {left: "Become", right: "Became"}, {left: "Begin", right: "Began"}] }
+];
+
+// ==========================================
+// GAME STATE & LOGIC
+// ==========================================
+let currentQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let isAnswered = false;
+
+let availableItems = [];
+let selectedItems = [];
+
+let duelScore = 0;
+let currentDuelObj = null;
+const duelBank = [
+    { q: "Past tense of RUN?", opts: ["ran", "runned"], ans: 0 },
+    { q: "Past tense of EAT?", opts: ["eated", "ate"], ans: 1 },
+    { q: "Past tense of GO?", opts: ["went", "goed"], ans: 0 },
+    { q: "Past tense of FLY?", opts: ["flew", "flied"], ans: 0 },
+    { q: "Past tense of CATCH?", opts: ["catched", "caught"], ans: 1 },
+    { q: "Past tense of SLEEP?", opts: ["slept", "sleeped"], ans: 0 },
+    { q: "Past tense of BUY?", opts: ["bought", "buyed"], ans: 0 },
+    { q: "Past tense of THINK?", opts: ["thought", "thinked"], ans: 0 },
+    { q: "The mouse ___ the lion.", opts: ["helped", "help"], ans: 0 },
+    { q: "The tortoise ___ the race.", opts: ["win", "won"], ans: 1 },
+    { q: "The lion ___ angry.", opts: ["was", "were"], ans: 0 },
+    { q: "The ants ___ diligent.", opts: ["was", "were"], ans: 1 },
+    { q: "He ___ a lie.", opts: ["didn't tell", "didn't told"], ans: 0 },
+    { q: "They ___ happy.", opts: ["was", "were"], ans: 1 },
+    { q: "She ___ to the forest.", opts: ["walked", "walk"], ans: 0 }
+];
+
+function shuffleArray(array) {
+    let curId = array.length;
+    while (0 !== curId) {
+        let randId = Math.floor(Math.random() * curId);
+        curId -= 1;
+        let tmp = array[curId];
+        array[curId] = array[randId];
+        array[randId] = tmp;
+    }
+    return array;
+}
+
+function showScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(screenId).classList.add('active');
+}
+
+function startGame() {
+    let shuffledBank = shuffleArray([...bankSoal]);
+    currentQuestions = shuffledBank.slice(0, 10);
+    currentIndex = 0;
+    score = 0;
+    showScreen('game-screen');
+    renderQuestion();
+}
+
+function renderQuestion() {
+    isAnswered = false;
+    const q = currentQuestions[currentIndex];
+    const container = document.getElementById('question-container');
+    const feedback = document.getElementById('feedback-container');
+    
+    document.getElementById('question-counter').innerText = `Soal ${currentIndex + 1} / 10`;
+    document.getElementById('score-display').innerText = `Skor: ${score}`;
+    document.getElementById('progress-bar').style.width = `${((currentIndex) / 10) * 100}%`;
+    
+    feedback.classList.add('hidden');
+    document.getElementById('btn-check').classList.remove('hidden');
+    document.getElementById('btn-next').classList.add('hidden');
+    
+    let html = `<h3 class="text-xl font-bold text-indigo-700 mb-6">${q.question}</h3>`;
+    
+    if (q.type === 'mcq') {
+        let opts = shuffleArray([...q.options]);
+        html += `<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">`;
+        opts.forEach((opt) => {
+            html += `<button onclick="selectMCQ(this, '${opt}')" class="mcq-btn text-left p-4 rounded-xl border-2 border-indigo-100 bg-white hover:border-indigo-400 hover:bg-indigo-50 font-semibold text-gray-700 transition-all">${opt}</button>`;
+        });
+        html += `</div>`;
+        container.innerHTML = html;
+        container.dataset.selected = "";
+        
+    } else if (q.type === 'fill') {
+        html += `<div class="mt-4">
+                    <input type="text" id="fill-input" class="w-full p-4 text-lg border-2 border-pink-200 rounded-xl focus:outline-none focus:border-pink-500 text-center font-bold text-gray-700" placeholder="Ketik jawabanmu di sini..." autocomplete="off">
+                 </div>`;
+        container.innerHTML = html;
+        
+    } else if (q.type === 'word_order') {
+        let items = shuffleArray([...q.words]);
+        availableItems = items;
+        selectedItems = [];
+        html += `
+            <div class="mb-6">
+                <p class="text-sm font-bold text-gray-500 mb-2">Pilihan (Klik untuk menyusun):</p>
+                <div id="available-container" class="flex flex-wrap gap-2 min-h-[50px] p-4 bg-blue-50 border-2 border-blue-200 rounded-xl border-dashed"></div>
+            </div>
+            <div>
+                <p class="text-sm font-bold text-gray-500 mb-2">Susunan Jawabanmu:</p>
+                <div id="selected-container" class="flex flex-wrap gap-2 min-h-[60px] p-4 bg-green-50 border-2 border-green-200 rounded-xl"></div>
+            </div>
+        `;
+        container.innerHTML = html;
+        renderOrderItems(q.type);
+        
+    } else if (q.type === 'match') {
+        let lefts = q.pairs.map(p => p.left);
+        let rights = shuffleArray(q.pairs.map(p => p.right));
+        
+        html += `<div class="space-y-4">`;
+        lefts.forEach((left, i) => {
+            let optionsHtml = `<option value="">-- Pilih Pasangan --</option>`;
+            rights.forEach(right => {
+                optionsHtml += `<option value="${right}">${right}</option>`;
+            });
+            html += `
+                <div class="flex items-center justify-between p-4 bg-white border-2 border-amber-100 rounded-xl shadow-sm">
+                    <span class="font-bold text-lg text-gray-700 w-1/2">${left}</span>
+                    <select class="match-select w-1/2 p-2 border-2 border-amber-300 rounded-lg focus:outline-none focus:border-amber-500 font-semibold text-gray-700 bg-amber-50">
+                        ${optionsHtml}
+                    </select>
+                </div>
+            `;
+        });
+        html += `</div>`;
+        container.innerHTML = html;
+    }
+}
+
+function selectMCQ(btn, value) {
+    if(isAnswered) return;
+    document.querySelectorAll('.mcq-btn').forEach(b => {
+        b.classList.remove('border-indigo-500', 'bg-indigo-100');
+        b.classList.add('border-indigo-100', 'bg-white');
+    });
+    btn.classList.remove('border-indigo-100', 'bg-white');
+    btn.classList.add('border-indigo-500', 'bg-indigo-100');
+    document.getElementById('question-container').dataset.selected = value;
+}
+
+function renderOrderItems(type) {
+    const availCont = document.getElementById('available-container');
+    const selCont = document.getElementById('selected-container');
+    availCont.innerHTML = '';
+    selCont.innerHTML = '';
+    
+    availableItems.forEach((item, index) => {
+        let div = document.createElement('div');
+        div.className = 'px-4 py-2 bg-white border-2 border-indigo-200 rounded-lg font-bold text-indigo-700 shadow-sm chip';
+        div.innerText = item;
+        div.onclick = () => moveItem(index, 'available', type);
+        availCont.appendChild(div);
+    });
+
+    selectedItems.forEach((item, index) => {
+        let div = document.createElement('div');
+        div.className = 'px-4 py-2 bg-indigo-500 text-white rounded-lg font-bold shadow-md chip';
+        div.innerText = item;
+        div.onclick = () => moveItem(index, 'selected', type);
+        selCont.appendChild(div);
+    });
+}
+
+function moveItem(index, from, type) {
+    if(isAnswered) return;
+    if (from === 'available') {
+        selectedItems.push(availableItems[index]);
+        availableItems.splice(index, 1);
+    } else {
+        availableItems.push(selectedItems[index]);
+        selectedItems.splice(index, 1);
+    }
+    renderOrderItems(type);
+}
+
+function checkAnswer() {
+    if (isAnswered) return;
+    const q = currentQuestions[currentIndex];
+    let isCorrect = false;
+    let userAnswer = "";
+
+    if (q.type === 'mcq') {
+        userAnswer = document.getElementById('question-container').dataset.selected;
+        if (!userAnswer) {
+            showToast("Silakan pilih jawaban terlebih dahulu!");
+            return;
+        }
+        isCorrect = (userAnswer === q.answer);
+    } 
+    else if (q.type === 'fill') {
+        userAnswer = document.getElementById('fill-input').value.trim().toLowerCase();
+        if (userAnswer === "") {
+            showToast("Silakan ketik jawaban terlebih dahulu!");
+            return;
+        }
+        isCorrect = (userAnswer === q.answer.toLowerCase());
+    } 
+    else if (q.type === 'word_order') {
+        if (selectedItems.length !== q.words.length) {
+            showToast("Silakan susun semua kata!");
+            return;
+        }
+        userAnswer = selectedItems.join(" ");
+        isCorrect = (userAnswer === q.answer);
+    } 
+    else if (q.type === 'match') {
+        let selects = document.querySelectorAll('.match-select');
+        let allFilled = true;
+        let correctCount = 0;
+        
+        selects.forEach((sel, i) => {
+            if (sel.value === "") allFilled = false;
+            if (sel.value === q.pairs[i].right) correctCount++;
+        });
+
+        if (!allFilled) {
+            showToast("Silakan pasangkan semua pilihan!");
+            return;
+        }
+        isCorrect = (correctCount === q.pairs.length);
+    }
+
+    isAnswered = true;
+    
+    const feedback = document.getElementById('feedback-container');
+    feedback.classList.remove('hidden', 'bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+    
+    if (isCorrect) {
+        score += 10;
+        document.getElementById('score-display').innerText = `Skor: ${score}`;
+        feedback.classList.add('bg-green-100', 'text-green-700');
+        feedback.innerHTML = `✅ Benar! Jawaban yang tepat.`;
+    } else {
+        feedback.classList.add('bg-red-100', 'text-red-700');
+        let correctText = q.answer || "Periksa kembali pasangan jawaban.";
+        feedback.innerHTML = `❌ Kurang Tepat. <br><span class="text-sm font-normal mt-1 block">Jawaban benar: <strong>${correctText}</strong></span>`;
+    }
+
+    document.getElementById('btn-check').classList.add('hidden');
+    document.getElementById('btn-next').classList.remove('hidden');
+}
+
+function nextQuestion() {
+    currentIndex++;
+    if (currentIndex < 10) {
+        renderQuestion();
+    } else {
+        endGame();
+    }
+}
+
+function endGame() {
+    showScreen('result-screen');
+    document.getElementById('progress-bar').style.width = `100%`;
+    const finalScoreEl = document.getElementById('final-score');
+    const msgEl = document.getElementById('result-message');
+    
+    finalScoreEl.innerText = score;
+    
+    if (score === 100) {
+        msgEl.innerText = "Sempurna! Kamu master Past Tense Fabel! 🏆";
+    } else if (score >= 70) {
+        msgEl.innerText = "Luar biasa! Pemahamanmu sudah sangat baik. 🌟";
+    } else if (score >= 40) {
+        msgEl.innerText = "Bagus! Terus berlatih agar lebih mahir ya. 👍";
+    } else {
+        msgEl.innerText = "Jangan menyerah! Coba baca materi lagi dan main ulang. 💪";
+    }
+}
+
+function startDuel() {
+    duelScore = 0;
+    document.getElementById('duel-result-overlay').classList.add('hidden');
+    updateRopeUI();
+    showScreen('duel-screen');
+    nextDuelQuestion();
+}
+
+function nextDuelQuestion() {
+    let randIdx = Math.floor(Math.random() * duelBank.length);
+    currentDuelObj = duelBank[randIdx];
+    
+    let swap = Math.random() > 0.5;
+    if (swap) {
+        document.getElementById('duel-opt-0').innerText = currentDuelObj.opts[1];
+        document.getElementById('duel-opt-1').innerText = currentDuelObj.opts[0];
+        currentDuelObj.currentAns = currentDuelObj.ans === 0 ? 1 : 0;
+    } else {
+        document.getElementById('duel-opt-0').innerText = currentDuelObj.opts[0];
+        document.getElementById('duel-opt-1').innerText = currentDuelObj.opts[1];
+        currentDuelObj.currentAns = currentDuelObj.ans;
+    }
+    
+    document.getElementById('duel-q-text').innerText = currentDuelObj.q;
+}
+
+function handleDuelAnswer(player, choice) {
+    if (!currentDuelObj || document.getElementById('duel-screen').classList.contains('active') === false) return;
+    
+    let isCorrect = (choice === currentDuelObj.currentAns);
+    
+    if (player === 1) {
+        if (isCorrect) duelScore -= 1;
+        else duelScore += 1;
+    } else if (player === 2) {
+        if (isCorrect) duelScore += 1;
+        else duelScore -= 1;
+    }
+    
+    if (duelScore < -5) duelScore = -5;
+    if (duelScore > 5) duelScore = 5;
+    
+    updateRopeUI();
+    
+    if (duelScore <= -5) {
+        endDuel(1);
+    } else if (duelScore >= 5) {
+        endDuel(2);
+    } else {
+        nextDuelQuestion();
+    }
+}
+
+function updateRopeUI() {
+    let percentage = 50 + (duelScore * 8); 
+    document.getElementById('rope-marker').style.left = `${percentage}%`;
+}
+
+function endDuel(winner) {
+    currentDuelObj = null; 
+    let overlay = document.getElementById('duel-result-overlay');
+    let text = document.getElementById('duel-winner-text');
+    
+    if (winner === 1) {
+        text.innerHTML = "🧑‍🦱 Pemain 1 Menang! 🎉";
+        text.className = "text-4xl font-black text-pink-500 mb-4";
+    } else {
+        text.innerHTML = "👱‍♂️ Pemain 2 Menang! 🎉";
+        text.className = "text-4xl font-black text-teal-500 mb-4";
+    }
+    overlay.classList.remove('hidden');
+}
+
+window.addEventListener('keydown', (e) => {
+    if (document.getElementById('duel-screen').classList.contains('active') && currentDuelObj !== null) {
+        if (e.key.toLowerCase() === 'a') handleDuelAnswer(1, 0);
+        if (e.key.toLowerCase() === 'd') handleDuelAnswer(1, 1);
+        if (e.key === 'ArrowLeft') handleDuelAnswer(2, 0);
+        if (e.key === 'ArrowRight') handleDuelAnswer(2, 1);
+    }
+});
+
+</script>
+
+</body>
+</html>
